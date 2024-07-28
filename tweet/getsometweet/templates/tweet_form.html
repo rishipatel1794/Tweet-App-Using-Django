@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Get Some Tweet with Us
+{% endblock %}
+
+{% block style %}
+    <style>
+        .container{
+            display: block;
+            align-content: center;
+
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 16px;
+            backdrop-filter: blur(13px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(34, 33, 33, 0.3);
+            color: #fff;
+        }
+
+        textarea{
+            height: 10rem;
+        }
+        
+        input[type="file"] {
+            padding: 5px;
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ffc107;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-submit:hover {
+            background-color: #e0a800;
+        }   
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h2> {% if form.instance.pk %} 
+        Edit Tweet  
+        {% else %} 
+        Create tweet 
+        {% endif %}
+    </h2>
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            {{form}}
+
+            <button class="btn btn-warning mt-3 btn-submit" type="submit">Submit</button>
+        </form>
+    </div>
+    <a href="{% url 'tweet_list' %}">Back To Tweet List</a>
+{% endblock %}

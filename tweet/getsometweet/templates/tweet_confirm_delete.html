@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Get Some Tweet with Us
+{% endblock %}
+
+{% block style %}
+    <style>
+        h1{
+        font-family: "Open Sans", sans-serif;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-4 text-center" style="font-family:Verdana, Geneva, Tahoma, sans-serif">Are You Really Want to Delete this Tweet?</h1>
+    <form method="post">
+        {% csrf_token %}
+    <button class="btn btn-danger">Delete</button>
+    <a class="btn btn-success" href="{% url 'tweet_list' %}">Cancel</a>
+</form>
+{% endblock %}
